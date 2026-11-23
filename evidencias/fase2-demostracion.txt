@@ -1,0 +1,14 @@
+=== FASE 2: INTERFACES FUNCIONALES ===
+Lambdas definidas; sus cuerpos todavía no se han ejecutado.
+Supplier.get(): Incidencia[id=INC-001, titulo=Error de acceso, estado=ABIERTA, prioridad=3]
+Predicate.test(): true
+Function.apply(): INC-001 - Error de acceso
+Consumer.accept(): Error de acceso
+=== SINTAXIS DE LAS LAMBDAS ===
+Lambda de expresión, prioridad 3: false
+Lambda con bloque, prioridad 3: false
+Tipo explícito, prioridad 4: true
+Parámetro con var, prioridad 4: true
+Umbral capturado = 4
+Prioridad 3 supera el umbral: false
+Prioridad 4 supera el umbral: true

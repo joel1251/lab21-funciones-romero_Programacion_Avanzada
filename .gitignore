@@ -1,0 +1,5 @@
+target/
+.idea/
+*.iml
+.vscode/
+evidencias/compilacion-invalida/

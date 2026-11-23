@@ -1,0 +1,31 @@
+Fecha: 23 de noviembre de 2026.
+Herramienta: Codex.
+Solicitud del estudiante: completar hasta la fase 4 para tomar capturas después.
+
+Objetivo previo:
+Continuar el proyecto existente, sin repetir sus pasos iniciales, implementando
+el contrato funcional y las funciones de incidencias de la guía.
+
+Respuesta aplicada:
+ReglaIncidencia, PrioridadAlta y ReglasIncidencia; ampliación de Demostracion
+para seleccionar las fases 2, 3 o 4; verificaciones automatizadas de contratos,
+reglas y generador. Se conservó la solución imperativa original.
+
+Verificación realizada por Codex:
+Maven con JDK 23 y compilación release 21. Fase 3: 6 pruebas aprobadas.
+Fase 4: 19 pruebas aprobadas, contando AppTest del arquetipo.
+Se ejecutaron las demostraciones y se guardaron sus salidas reales.
+Se comprobó con javac que una copia temporal de ReglaIncidencia con dos
+métodos abstractos es rechazada. La fuente original permaneció intacta.
+
+Correcciones y límites:
+La comparación de las tres implementaciones usa la misma regla de prioridad
+alta: comparar reglas diferentes no demuestra equivalencia.
+El umbral se centralizó en UMBRAL_PRIORIDAD_ALTA al implementar la fase 4.
+La salida con tildes requirió configurar stdout y stderr como UTF-8.
+Las pruebas de equivalencia entre procesadores y la mutación manual del
+umbral todavía no se han realizado: corresponden a fases posteriores.
+
+Verificación del estudiante:
+Pendiente de ejecutar y revisar las demostraciones y tomar sus capturas.
+No se atribuyen al estudiante cambios manuales o revisiones todavía no hechos.

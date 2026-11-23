@@ -1,0 +1,14 @@
+=== FASE 4: FUNCIONES DEL CASO PRÁCTICO ===
+Umbral de prioridad alta: 4
+INC-001 | abierta=true | alta=true | atención=true | categoría=CRITICA
+INC-002 | abierta=true | alta=false | atención=false | categoría=MEDIA
+INC-003 | abierta=false | alta=true | atención=false | categoría=CRITICA
+INC-004 | abierta=true | alta=false | atención=false | categoría=MEDIA
+INC-005 | abierta=true | alta=true | atención=true | categoría=ALTA
+INC-006 | abierta=true | alta=false | atención=false | categoría=BAJA
+INC-007 | abierta=false | alta=true | atención=false | categoría=ALTA
+RESUMEN.apply(): INC-001 - Caída del servidor
+NOTIFICAR.accept():
+[ATENCION] INC-001 - Caída del servidor
+Supplier, primera llamada: Incidencia[id=INC-001, titulo=Incidencia sintética 1, estado=EN_PROCESO, prioridad=2]
+Supplier, segunda llamada: Incidencia[id=INC-002, titulo=Incidencia sintética 2, estado=CERRADA, prioridad=3]

@@ -3,6 +3,7 @@ package ec.edu.espe.pa.funcional;
 import ec.edu.espe.pa.funcional.modelo.Incidencia;
 import ec.edu.espe.pa.funcional.contrato.ReglaIncidencia;
 import ec.edu.espe.pa.funcional.reglas.PrioridadAlta;
+import ec.edu.espe.pa.funcional.reglas.ReglasIncidencia;
 
 import java.util.List;
 import java.util.function.Consumer;
@@ -21,11 +22,13 @@ public class Demostracion {
         switch (fase) {
             case "2" -> demostrarInterfaces();
             case "3" -> demostrarContrato();
+            case "4" -> demostrarReglas();
             case "todas" -> {
                 demostrarInterfaces();
                 demostrarContrato();
+                demostrarReglas();
             }
-            default -> throw new IllegalArgumentException("Elige 2, 3 o todas");
+            default -> throw new IllegalArgumentException("Elige 2, 3, 4 o todas");
         }
     }
 
@@ -99,10 +102,11 @@ public class Demostracion {
         ReglaIncidencia prioridadAnonima = new ReglaIncidencia() {
             @Override
             public boolean evaluar(Incidencia incidencia) {
-                return incidencia.prioridad() >= 4;
+                return incidencia.prioridad() >= ReglasIncidencia.UMBRAL_PRIORIDAD_ALTA;
             }
         };
-        ReglaIncidencia prioridadLambda = incidencia -> incidencia.prioridad() >= 4;
+        ReglaIncidencia prioridadLambda = incidencia ->
+                incidencia.prioridad() >= ReglasIncidencia.UMBRAL_PRIORIDAD_ALTA;
 
         for (int prioridad : List.of(3, 4, 5)) {
             Incidencia caso = new Incidencia("INC-P" + prioridad, "Caso de prioridad", "ABIERTA", prioridad);
@@ -121,5 +125,37 @@ public class Demostracion {
         System.out.println("ABIERTA y prioridad 4 requiere atención: " + requiereAtencion.evaluar(abiertaAlta));
         System.out.println("CERRADA y prioridad 5 requiere atención: " + requiereAtencion.evaluar(cerradaAlta));
         System.out.println("Adaptación a Predicate con ::evaluar: " + comoPredicado.test(abiertaAlta));
+    }
+
+    private static void demostrarReglas() {
+        System.out.println("=== FASE 4: FUNCIONES DEL CASO PRÁCTICO ===");
+        System.out.println("Umbral de prioridad alta: " + ReglasIncidencia.UMBRAL_PRIORIDAD_ALTA);
+        List<Incidencia> datos = List.of(
+                new Incidencia("INC-001", "Caída del servidor", "ABIERTA", 5),
+                new Incidencia("INC-002", "Error tipográfico", "ABIERTA", 2),
+                new Incidencia("INC-003", "Fallo resuelto", "CERRADA", 5),
+                new Incidencia("INC-004", "Lentitud en reportes", "ABIERTA", 3),
+                new Incidencia("INC-005", "Error de acceso", "ABIERTA", 4),
+                new Incidencia("INC-006", "Consulta menor", "ABIERTA", 1),
+                new Incidencia("INC-007", "Actualizar certificado", "EN_PROCESO", 4));
+
+        // Se prueban las funciones directamente; la refactorización vendrá después.
+        for (Incidencia incidencia : datos) {
+            System.out.printf("%s | abierta=%s | alta=%s | atención=%s | categoría=%s%n",
+                    incidencia.id(), ReglasIncidencia.ESTA_ABIERTA.test(incidencia),
+                    ReglasIncidencia.PRIORIDAD_ALTA.test(incidencia),
+                    ReglasIncidencia.REQUIERE_ATENCION.test(incidencia),
+                    ReglasIncidencia.CATEGORIA.apply(incidencia));
+        }
+
+        Incidencia ejemplo = datos.get(0);
+        System.out.println("RESUMEN.apply(): " + ReglasIncidencia.RESUMEN.apply(ejemplo));
+        System.out.println("NOTIFICAR.accept():");
+        ReglasIncidencia.NOTIFICAR.accept(ejemplo);
+
+        // Reutilizar la misma instancia permite observar el avance del contador.
+        Supplier<Incidencia> generador = ReglasIncidencia.generadorSintetico();
+        System.out.println("Supplier, primera llamada: " + generador.get());
+        System.out.println("Supplier, segunda llamada: " + generador.get());
     }
 }

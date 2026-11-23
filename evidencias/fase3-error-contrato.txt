@@ -1,0 +1,16 @@
+FASE 3: comprobacion del contrato con dos metodos abstractos
+Java 23, compilacion --release 21. Se compilo una copia temporal.
+
+C:\Users\JR\Documents\Septimos Semestre\Programacion Avanzada\Segundo Parcial\Laboratorio 2.1 Funciones y contratos funcionales\lab21-funciones-romero\target\verificacion-contrato\ReglaIncidencia.java:13: error: incompatible types: ReglaIncidencia is not a functional interface
+        return incidencia -> this.evaluar(incidencia) && otra.evaluar(incidencia);
+               ^
+    multiple non-overriding abstract methods found in interface ReglaIncidencia
+C:\Users\JR\Documents\Septimos Semestre\Programacion Avanzada\Segundo Parcial\Laboratorio 2.1 Funciones y contratos funcionales\lab21-funciones-romero\target\verificacion-contrato\ReglaIncidencia.java:6: error: Unexpected @FunctionalInterface annotation
+@FunctionalInterface
+^
+  ReglaIncidencia is not a functional interface
+    multiple non-overriding abstract methods found in interface ReglaIncidencia
+2 errors
+
+Resultado: compilacion rechazada como se esperaba.
+El archivo original conserva un solo metodo abstracto.

@@ -1,0 +1,8 @@
+=== FASE 3: CONTRATO PROPIO ===
+Prioridad 3 | clase=false | anónima=false | lambda=false
+Prioridad 4 | clase=true | anónima=true | lambda=true
+Prioridad 5 | clase=true | anónima=true | lambda=true
+Contrato con método default y():
+ABIERTA y prioridad 4 requiere atención: true
+CERRADA y prioridad 5 requiere atención: false
+Adaptación a Predicate con ::evaluar: true

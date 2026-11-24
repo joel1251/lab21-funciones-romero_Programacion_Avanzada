@@ -55,4 +55,9 @@ public final class ReglasIncidencia {
                     estados[n % estados.length], (n % 5) + 1);
         };
     }
+
+    /** Método estático usable como referencia a método: ReglasIncidencia::esCritica. */
+    public static boolean esCritica(Incidencia incidencia) {
+        return incidencia.prioridad() == 5;
+    }
 }
